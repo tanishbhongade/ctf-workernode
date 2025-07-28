@@ -19,6 +19,17 @@ npm i
 node server.js
 ```
 
+## Configuration
+
+There are two configuration files in this system which you have to configure:
+<br>
+
+- config.env <br>
+  This is the file where all your secrets live; for e.g. server ports, encryption keys etc.
+  <br>
+- Dockerfile<br>
+  This is the Dockerfile example which you can use to create a non-exiting container
+
 ## API endpoints
 
 ### POST /api/container/createContainer
