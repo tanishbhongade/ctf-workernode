@@ -59,3 +59,17 @@ Deletes a container on worker node, but ensuring that the request is coming from
   "containerId": "playercontainerId"
 }
 ```
+
+### PATCH /api/container/restartContainer
+
+### Description:
+
+Restarts a container on worker node, but ensuring that the request is coming from management server using HMAC signature
+
+### Request Body:
+
+```json
+{
+  
+}
+```
