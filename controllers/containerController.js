@@ -93,7 +93,24 @@ const removeContainer = async (req, res) => {
     }
 }
 
+const restartContainer = async (req, res) => {
+    try {
+        const container = docker.getContainer(req.body.containerId)
+        await container.restart()
+        res.status(200).json({
+            status: "success",
+            message: "Container successfully restarted"
+        })
+    } catch (err) {
+        res.status(500).json({
+            status: 'failed',
+            message: 'Failed to restart container',
+        })
+    }
+}
+
 module.exports = {
     createContainer,
-    removeContainer
+    removeContainer, 
+    restartContainer
 };
