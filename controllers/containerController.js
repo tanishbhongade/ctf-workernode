@@ -75,7 +75,8 @@ const createContainer = async (req, res) => {
 const removeContainer = async (req, res) => {
     try {
         const container = docker.getContainer(req.body.containerId)
-        await container.remove({ force: true })
+        await container.stop({ t: 2 })
+        await container.remove({ force: true, v: true })
         res.status(204).json({})
     } catch (err) {
         if (err.statusCode === 500) {
@@ -111,6 +112,6 @@ const restartContainer = async (req, res) => {
 
 module.exports = {
     createContainer,
-    removeContainer, 
+    removeContainer,
     restartContainer
 };
