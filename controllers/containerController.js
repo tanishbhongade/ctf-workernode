@@ -36,11 +36,15 @@ const createContainer = async (req, res) => {
         const hostIP = ipResults[interfaceName]?.[0] || '127.0.0.1'
 
         const password = generateRandomPassword();
+        const username = req.body.username;
 
         const container = await docker.createContainer({
             Image: req.body.imageName,
             Tty: true,
-            Env: [`MYUSER_PASSWORD=${password}`],
+            Env: [
+                `SSH_USERNAME=${username}`,
+                `SSH_PASSWORD=${password}`
+            ],
             ExposedPorts: {
                 '22/tcp': {}
             },
@@ -61,7 +65,7 @@ const createContainer = async (req, res) => {
             data: {
                 containerId: container.id,
                 sshPort: sshPort,
-                username: 'myuser',
+                username: username,
                 password: password,
                 hostIP: hostIP
             }
